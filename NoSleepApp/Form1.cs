@@ -40,7 +40,6 @@ namespace NoSleepApp {
 
         private void UpdateCursor(object sender, ProgressChangedEventArgs e)
         {
-
             int coef = 2;
             double rad = Math.PI / 180;
             int i = e.ProgressPercentage;
