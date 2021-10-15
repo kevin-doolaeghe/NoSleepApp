@@ -33,18 +33,26 @@ namespace NoSleepApp {
             while (waiting)
             {
                 bg.ReportProgress(i);
-                i += 10;
-                Thread.Sleep(10);
+
+                // i += 10;
+                // Thread.Sleep(10);
+
+                Thread.Sleep(1000 * 60);
             }
         }
 
         private void UpdateCursor(object sender, ProgressChangedEventArgs e)
         {
+            /*
             int coef = 2;
             double rad = Math.PI / 180;
             int i = e.ProgressPercentage;
             Cursor = new Cursor(Cursor.Current.Handle);
             Cursor.Position = new Point(Cursor.Position.X + (int)(coef * Math.Cos(i * rad)), Cursor.Position.Y + (int)(coef * Math.Sin(i * rad)));
+            */
+            SendKeys.Send("^{ESC}");
+            Thread.Sleep(100);
+            SendKeys.Send("{ESC}");
         }
 
         private void EnableButton(object sender, RunWorkerCompletedEventArgs e)
