@@ -37,7 +37,9 @@ namespace NoSleepApp {
                 // i += 10;
                 // Thread.Sleep(10);
 
-                Thread.Sleep(1000 * 60);
+                int j;
+                for (j = 0; j < 60 && waiting; j++)
+                    Thread.Sleep(1000);
             }
         }
 
@@ -69,10 +71,10 @@ namespace NoSleepApp {
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.C && e.Control)
+            if (e.KeyCode == Keys.C && e.Control && waiting)
             {
                 waiting = false;
-                MessageBox.Show("You pressed Ctrl+C");
+                MessageBox.Show("Application is now disabled.", "Ctrl+C detected !");
             }
         }
     }
