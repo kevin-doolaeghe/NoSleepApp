@@ -38,7 +38,8 @@ namespace NoSleepApp {
                 // Thread.Sleep(10);
 
                 int j;
-                for (j = 0; j < 60 && waiting; j++)
+                int sleepTime = 300; // 5 minutes
+                for (j = 0; j < sleepTime && waiting; j++)
                     Thread.Sleep(1000);
             }
         }
