@@ -45,11 +45,11 @@ namespace NoSleepApp {
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(37, 38);
+            this.label1.Location = new System.Drawing.Point(29, 38);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(159, 15);
+            this.label1.Size = new System.Drawing.Size(168, 15);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Press Ctrl+C to disable sleep.";
+            this.label1.Text = "Press Ctrl+C to disable service.";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // Form1
