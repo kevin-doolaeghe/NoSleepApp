@@ -78,5 +78,9 @@ namespace NoSleepApp {
                 MessageBox.Show("Application is now disabled.", "Ctrl+C detected !");
             }
         }
+
+        private void label1_Click(object sender, EventArgs e) {
+
+        }
     }
 }
