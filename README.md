@@ -2,8 +2,12 @@
 
 ## Author
 
-### Kevin Doolaeghe
+Kevin Doolaeghe
 
 ## Purpose
 
 Desktop tool to prevent Windows from sleeping or turning off.
+
+## Screenshot
+
+![Screenshot of app](screenshot.png)
