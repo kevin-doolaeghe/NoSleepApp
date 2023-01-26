@@ -1,6 +1,8 @@
 ﻿
 namespace NoSleepApp {
-    partial class Form1 {
+
+    partial class SleepForm {
+
         /// <summary>
         ///  Required designer variable.
         /// </summary>
@@ -10,10 +12,8 @@ namespace NoSleepApp {
         ///  Clean up any resources being used.
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing && (components != null))
-            {
+        protected override void Dispose(bool disposing) {
+            if (disposing && (components != null)) {
                 components.Dispose();
             }
             base.Dispose(disposing);
@@ -27,46 +27,45 @@ namespace NoSleepApp {
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.sleepButton = new System.Windows.Forms.Button();
+            this.disableMessageLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // button1
+            // sleepButton
             // 
-            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button1.Location = new System.Drawing.Point(77, 12);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Stop sleep";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.sleepButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.sleepButton.Location = new System.Drawing.Point(77, 12);
+            this.sleepButton.Name = "sleepButton";
+            this.sleepButton.Size = new System.Drawing.Size(75, 23);
+            this.sleepButton.TabIndex = 0;
+            this.sleepButton.Text = "Stop sleep";
+            this.sleepButton.UseVisualStyleBackColor = true;
+            this.sleepButton.Click += new System.EventHandler(this.OnSleepButtonClick);
             // 
-            // label1
+            // disableMessageLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(29, 38);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(168, 15);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Press Ctrl+C to disable service.";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
+            this.disableMessageLabel.AutoSize = true;
+            this.disableMessageLabel.Location = new System.Drawing.Point(29, 38);
+            this.disableMessageLabel.Name = "disableMessageLabel";
+            this.disableMessageLabel.Size = new System.Drawing.Size(168, 15);
+            this.disableMessageLabel.TabIndex = 1;
+            this.disableMessageLabel.Text = "Press Ctrl+C to disable service.";
             // 
-            // Form1
+            // SleepForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(224, 65);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.disableMessageLabel);
+            this.Controls.Add(this.sleepButton);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.KeyPreview = true;
             this.MaximizeBox = false;
-            this.Name = "Form1";
+            this.Name = "SleepForm";
             this.ShowInTaskbar = false;
             this.Text = "NoSleepApp";
             this.TopMost = true;
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnKeyDownEvent);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -74,8 +73,8 @@ namespace NoSleepApp {
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button sleepButton;
+        private System.Windows.Forms.Label disableMessageLabel;
     }
 }
 

@@ -8,79 +8,67 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Threading;
+using System.Diagnostics;
 
 namespace NoSleepApp {
-    public partial class Form1 : Form {
-        private bool waiting;
-        private BackgroundWorker worker;
+    public partial class SleepForm : System.Windows.Forms.Form {
 
-        public Form1()
-        {
+        private bool waiting;
+        private readonly BackgroundWorker worker;
+
+        public SleepForm() {
             waiting = false;
             InitializeComponent();
 
-            worker = new BackgroundWorker();
-            worker.WorkerReportsProgress = true;
+            worker = new() { WorkerReportsProgress = true };
             worker.DoWork += Wait;
-            worker.ProgressChanged += UpdateCursor;
+            worker.ProgressChanged += UpdateUi;
             worker.RunWorkerCompleted += EnableButton;
         }
 
-        private void Wait(object sender, DoWorkEventArgs e)
-        {
+        private void Wait(object sender, DoWorkEventArgs e) {
             BackgroundWorker bg = (BackgroundWorker)sender;
             int i = 0;
-            while (waiting)
-            {
+            while (waiting) {
                 bg.ReportProgress(i);
-
-                // i += 10;
-                // Thread.Sleep(10);
 
                 int j;
                 int sleepTime = 300; // 5 minutes
-                for (j = 0; j < sleepTime && waiting; j++)
-                    Thread.Sleep(1000);
+                for (j = 0; j < sleepTime && waiting; j++) {
+                    try {
+                        Thread.Sleep(1000);
+                    } catch (Exception ex) {
+                        Debug.WriteLine(ex.Message);
+                    }
+                }
             }
         }
 
-        private void UpdateCursor(object sender, ProgressChangedEventArgs e)
-        {
-            /*
-            int coef = 2;
-            double rad = Math.PI / 180;
-            int i = e.ProgressPercentage;
-            Cursor = new Cursor(Cursor.Current.Handle);
-            Cursor.Position = new Point(Cursor.Position.X + (int)(coef * Math.Cos(i * rad)), Cursor.Position.Y + (int)(coef * Math.Sin(i * rad)));
-            */
-            SendKeys.Send("^{ESC}");
-            Thread.Sleep(100);
-            SendKeys.Send("{ESC}");
+        private void UpdateUi(object sender, ProgressChangedEventArgs e) {
+            try {
+                SendKeys.Send("^{ESC}");
+                Thread.Sleep(100);
+                SendKeys.Send("{ESC}");
+            } catch (Exception ex) {
+                Debug.WriteLine(ex.Message);
+            }
         }
 
-        private void EnableButton(object sender, RunWorkerCompletedEventArgs e)
-        {
-            button1.Enabled = true;
+        private void EnableButton(object sender, RunWorkerCompletedEventArgs e) {
+            sleepButton.Enabled = true;
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
+        private void OnSleepButtonClick(object sender, EventArgs e) {
             waiting = true;
             worker.RunWorkerAsync();
-            button1.Enabled = false;
+            sleepButton.Enabled = false;
         }
 
-        private void Form1_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.C && e.Control && waiting)
-            {
+        private void OnKeyDownEvent(object sender, KeyEventArgs e) {
+            if (e.KeyCode == Keys.C && e.Control && waiting) {
                 waiting = false;
                 MessageBox.Show("Application is now disabled.", "Ctrl+C detected !");
             }
-        }
-
-        private void label1_Click(object sender, EventArgs e) {
-
         }
     }
 }
